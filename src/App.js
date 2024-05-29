@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect,useState } from 'react'
+import Home from './pages/Home'
 
-function App() {
+const App = () => {
+
+  
+
+  const  [keyPress, setKeyPress] = useState([])
+
+  useEffect(() => {
+    document.addEventListener('keydown',(e)=>{
+      setKeyPress((prev)=>[...prev,e.key])
+      if(keyPress.length === 0){
+        
+        console.log('Hello')
+      }else{
+        console.log(keyPress)
+      }
+    })
+  }, [])
+  console.log(keyPress)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='flex items-center justify-center h-[100vh] w-[100vw]'>
+     <Home/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
