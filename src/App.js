@@ -1,27 +1,35 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Home from './pages/Home'
 
 const App = () => {
 
-  
 
-  const  [keyPress, setKeyPress] = useState([])
+
+  const [keyPress, setKeyPress] = useState({})
+  const handleKeyPress = (e) => {
+    setKeyPress(e)
+  }
+
+  const handleActions=(keyActions)=>{
+    if(keyActions.ctrlKey){
+      console.log(`ctrl ${keyActions.key}`)
+    }else{
+      console.log(keyActions.key)
+    }
+  }
 
   useEffect(() => {
-    document.addEventListener('keydown',(e)=>{
-      setKeyPress((prev)=>[...prev,e.key])
-      if(keyPress.length === 0){
-        
-        console.log('Hello')
-      }else{
-        console.log(keyPress)
-      }
-    })
+    document.addEventListener('keydown', handleKeyPress)
   }, [])
-  console.log(keyPress)
+
+  useEffect(() => {
+    handleActions(keyPress);
+  }, [keyPress])
+  
+  console.log(keyPress.ctrlKey,keyPress.key);
   return (
     <div className='flex items-center justify-center h-[100vh] w-[100vw]'>
-     <Home/>
+      <Home />
     </div>
   )
 }
