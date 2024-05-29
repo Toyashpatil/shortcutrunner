@@ -25,8 +25,7 @@ const App = () => {
   useEffect(() => {
     handleActions(keyPress);
   }, [keyPress])
-  
-  console.log(keyPress.ctrlKey,keyPress.key);
+
   return (
     <div className='flex items-center justify-center h-[100vh] w-[100vw]'>
       <Home />
